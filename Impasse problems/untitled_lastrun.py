@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy2 Experiment Builder (v1.85.4),
-    on 2017_10_30_2138
+    on 2017_11_05_1406
 If you publish work using this script please cite the PsychoPy publications:
     Peirce, JW (2007) PsychoPy - Psychophysics software in Python.
         Journal of Neuroscience Methods, 162(1-2), 8-13.
@@ -40,7 +40,7 @@ filename = _thisDir + os.sep + u'data/%s_%s_%s' % (expInfo['participant'], expNa
 # An ExperimentHandler isn't essential but helps with data saving
 thisExp = data.ExperimentHandler(name=expName, version='',
     extraInfo=expInfo, runtimeInfo=None,
-    originPath=u'D:\\YandexDisk\\\u0410\u0441\u043f\u0438\u0440\u0430\u043d\u0442\u0443\u0440\u0430\\\u0414\u0438\u0441\u0441\u0435\u0440\u0442\u0430\u0446\u0438\u044f\\\u042d\u043a\u0441\u043f\u0435\u0440\u0438\u043c\u0435\u043d\u0442 \u0441 \u041f\u043e\u043b\u0438\u043d\u043e\u0439\\\u0421\u043a\u0440\u0438\u043f\u0442\\Version conrol fail\\untitled.psyexp',
+    originPath=u'C:\\Experiments\\Impasse problems\\untitled.psyexp',
     savePickle=True, saveWideText=True,
     dataFileName=filename)
 # save a log file for detail verbose info
@@ -68,14 +68,14 @@ else:
 trialClock = core.Clock()
 image = visual.ImageStim(
     win=win, name='image',
-    image='Relaxation_for_expl.png', mask=None,
+    image='Images\\Relaxation_for_expl.png', mask=None,
     ori=0, pos=(0, 0), size=None,
     color=[1,1,1], colorSpace='rgb', opacity=1,
     flipHoriz=False, flipVert=False,
     texRes=128, interpolate=True, depth=0.0)
 image_2 = visual.ImageStim(
     win=win, name='image_2',
-    image='Rel_hint.png', mask=None,
+    image='Images\\Rel_hint.png', mask=None,
     ori=0, pos=(0, 0), size=None,
     color='red', colorSpace='rgb', opacity=1.0,
     flipHoriz=False, flipVert=False,
@@ -87,14 +87,14 @@ from random import choice
 secondClock = core.Clock()
 image_3 = visual.ImageStim(
     win=win, name='image_3',
-    image='Decomposition_for_expl.png', mask=None,
+    image='Images\\Decomposition_for_expl.png', mask=None,
     ori=0, pos=(0, 0), size=None,
     color=[1,1,1], colorSpace='rgb', opacity=1,
     flipHoriz=False, flipVert=False,
     texRes=128, interpolate=True, depth=0.0)
 image_4 = visual.ImageStim(
     win=win, name='image_4',
-    image='Dec_hint.png', mask=None,
+    image='Images\\Dec_hint.png', mask=None,
     ori=0, pos=(0, 0), size=None,
     color=[-1.000,1.000,-1.000], colorSpace='rgb', opacity=1.0,
     flipHoriz=False, flipVert=False,
