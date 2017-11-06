@@ -1,4 +1,1 @@
-
-*.psydat
-*.csv
-*.log
+data/
