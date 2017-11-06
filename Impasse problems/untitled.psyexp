@@ -79,10 +79,10 @@
       <CodeComponent name="code">
         <Param name="Begin Experiment" updates="constant" val="from time import sleep&amp;#10;&amp;#10;ready_to_shine = 0&amp;#10;time_to_stop = 0&amp;#10;" valType="extendedCode"/>
         <Param name="name" updates="None" val="code" valType="code"/>
-        <Param name="Begin Routine" updates="constant" val="n = 0&amp;#10;" valType="extendedCode"/>
+        <Param name="Begin Routine" updates="constant" val="blink = 0&amp;#10;blink_time = 0" valType="extendedCode"/>
         <Param name="End Routine" updates="constant" val="if 'e' == problem_control.keys:&amp;#10;    circles.finished = True&amp;#10;    ready_to_shine = 0&amp;#10;else:&amp;#10;    ready_to_shine = 1&amp;#10;    time_to_stop = 10" valType="extendedCode"/>
         <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Each Frame" updates="constant" val="if t &lt;= time_to_stop and ready_to_shine == 1:&amp;#10;    impacts.opacity = (1,0)[n%2]&amp;#10;    n +=1&amp;#10;    sleep(0.5)&amp;#10;else:&amp;#10;    impacts.opacity = 0" valType="extendedCode"/>
+        <Param name="Each Frame" updates="constant" val="if blink_time &lt;= t &lt;= time_to_stop and ready_to_shine == 1:&amp;#10;    impacts.opacity = (1,0)[blink%2]&amp;#10;    blink += 1&amp;#10;    blink_time += 1&amp;#10;&amp;#10;if t &gt; time_to_stop:&amp;#10;    impacts.opacity = 0" valType="extendedCode"/>
       </CodeComponent>
       <ImageComponent name="this_problem">
         <Param name="opacity" updates="constant" val="1" valType="code"/>
