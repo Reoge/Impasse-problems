@@ -77,11 +77,11 @@
     </Routine>
     <Routine name="main_event">
       <CodeComponent name="code">
-        <Param name="Begin Experiment" updates="constant" val="from time import sleep&amp;#10;&amp;#10;ready_to_shine = 0&amp;#10;time_to_stop = 0&amp;#10;" valType="extendedCode"/>
+        <Param name="Begin Experiment" updates="constant" val="from random import sample&amp;#10;delay_time = sample((0,12),2)&amp;#10;&amp;#10;ready_to_shine = 0&amp;#10;time_to_stop = 0&amp;#10;" valType="extendedCode"/>
         <Param name="name" updates="None" val="code" valType="code"/>
-        <Param name="Begin Routine" updates="constant" val="blink = 0&amp;#10;blink_time = 0" valType="extendedCode"/>
-        <Param name="End Routine" updates="constant" val="if 'e' == problem_control.keys:&amp;#10;    circles.finished = True&amp;#10;    ready_to_shine = 0&amp;#10;else:&amp;#10;    ready_to_shine = 1&amp;#10;    time_to_stop = 10" valType="extendedCode"/>
-        <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Begin Routine" updates="constant" val="blink = 0&amp;#10;blink_time = delay" valType="extendedCode"/>
+        <Param name="End Routine" updates="constant" val="if 'e' == problem_control.keys:&amp;#10;    circles.finished = True&amp;#10;    ready_to_shine = 0&amp;#10;else:&amp;#10;    ready_to_shine = 1&amp;#10;    time_to_stop = 10+delay" valType="extendedCode"/>
+        <Param name="End Experiment" updates="constant" val="#for num, cond in enumerate(problems.trialList):&amp;#10;#    cond['delay'] = delay_time[num]" valType="extendedCode"/>
         <Param name="Each Frame" updates="constant" val="if blink_time &lt;= t &lt;= time_to_stop and ready_to_shine == 1:&amp;#10;    impacts.opacity = (1,0)[blink%2]&amp;#10;    blink += 1&amp;#10;    blink_time += 1&amp;#10;&amp;#10;if t &gt; time_to_stop:&amp;#10;    impacts.opacity = 0" valType="extendedCode"/>
       </CodeComponent>
       <ImageComponent name="this_problem">
@@ -107,7 +107,7 @@
         <Param name="size" updates="constant" val="" valType="code"/>
       </ImageComponent>
       <ImageComponent name="impacts">
-        <Param name="opacity" updates="set every repeat" val="ready_to_shine" valType="code"/>
+        <Param name="opacity" updates="constant" val="0" valType="code"/>
         <Param name="flipVert" updates="constant" val="False" valType="bool"/>
         <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
         <Param name="name" updates="None" val="impacts" valType="code"/>
@@ -144,6 +144,26 @@
         <Param name="store" updates="constant" val="first key" valType="str"/>
         <Param name="syncScreenRefresh" updates="constant" val="True" valType="bool"/>
       </KeyboardComponent>
+      <TextComponent name="text">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="text" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="white" valType="str"/>
+        <Param name="text" updates="set every frame" val="$blink_time &lt;= t &lt;= time_to_stop" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="pos" updates="constant" val="(0, 0)" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+      </TextComponent>
     </Routine>
     <Routine name="finish"/>
     <Routine name="counting"/>
