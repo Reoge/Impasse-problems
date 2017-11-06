@@ -75,15 +75,14 @@
         <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
       </CodeComponent>
     </Routine>
-    <Routine name="finish"/>
     <Routine name="main_event">
       <CodeComponent name="code">
-        <Param name="Begin Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Begin Experiment" updates="constant" val="from time import sleep&amp;#10;&amp;#10;ready_to_shine = 0&amp;#10;time_to_stop = 0&amp;#10;" valType="extendedCode"/>
         <Param name="name" updates="None" val="code" valType="code"/>
-        <Param name="Begin Routine" updates="constant" val="" valType="extendedCode"/>
-        <Param name="End Routine" updates="constant" val="if 'e' in problem_control.keys:&amp;#10;    lagging.finished = True&amp;#10;" valType="extendedCode"/>
+        <Param name="Begin Routine" updates="constant" val="n = 0&amp;#10;" valType="extendedCode"/>
+        <Param name="End Routine" updates="constant" val="if 'e' == problem_control.keys:&amp;#10;    circles.finished = True&amp;#10;    ready_to_shine = 0&amp;#10;else:&amp;#10;    ready_to_shine = 1&amp;#10;    time_to_stop = 10" valType="extendedCode"/>
         <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Each Frame" updates="constant" val="if 'space' in problem_control.keys:&amp;#10;    this_impact.opacity = 1" valType="extendedCode"/>
+        <Param name="Each Frame" updates="constant" val="if t &lt;= time_to_stop and ready_to_shine == 1:&amp;#10;    impacts.opacity = (1,0)[n%2]&amp;#10;    n +=1&amp;#10;    sleep(0.5)&amp;#10;else:&amp;#10;    impacts.opacity = 0" valType="extendedCode"/>
       </CodeComponent>
       <ImageComponent name="this_problem">
         <Param name="opacity" updates="constant" val="1" valType="code"/>
@@ -108,12 +107,12 @@
         <Param name="size" updates="constant" val="" valType="code"/>
       </ImageComponent>
       <ImageComponent name="impacts">
-        <Param name="opacity" updates="set every repeat" val="1" valType="code"/>
+        <Param name="opacity" updates="set every repeat" val="ready_to_shine" valType="code"/>
         <Param name="flipVert" updates="constant" val="False" valType="bool"/>
         <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
         <Param name="name" updates="None" val="impacts" valType="code"/>
         <Param name="color" updates="constant" val="red" valType="str"/>
-        <Param name="stopVal" updates="constant" val="5.0" valType="code"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
         <Param name="durationEstim" updates="None" val="" valType="code"/>
         <Param name="mask" updates="constant" val="None" valType="str"/>
         <Param name="pos" updates="constant" val="(0, 0)" valType="code"/>
@@ -137,24 +136,25 @@
         <Param name="durationEstim" updates="None" val="" valType="code"/>
         <Param name="forceEndRoutine" updates="constant" val="True" valType="bool"/>
         <Param name="startEstim" updates="None" val="" valType="code"/>
-        <Param name="discard previous" updates="constant" val="True" valType="bool"/>
+        <Param name="discard previous" updates="constant" val="False" valType="bool"/>
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
-        <Param name="allowedKeys" updates="constant" val="'space', 'e'" valType="code"/>
+        <Param name="allowedKeys" updates="constant" val="'e', 'space'" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="startVal" updates="None" val="1.0" valType="code"/>
-        <Param name="store" updates="constant" val="all keys" valType="str"/>
+        <Param name="store" updates="constant" val="first key" valType="str"/>
         <Param name="syncScreenRefresh" updates="constant" val="True" valType="bool"/>
       </KeyboardComponent>
     </Routine>
+    <Routine name="finish"/>
     <Routine name="counting"/>
   </Routines>
   <Flow>
     <Routine name="instruction"/>
     <Routine name="counting"/>
     <LoopInitiator loopType="TrialHandler" name="problems">
-      <Param name="conditionsFile" updates="None" val="conditions\problems.xlsx" valType="str"/>
+      <Param name="conditionsFile" updates="None" val="conditions\problems.csv" valType="str"/>
       <Param name="name" updates="None" val="problems" valType="code"/>
-      <Param name="isTrials" updates="None" val="True" valType="bool"/>
+      <Param name="isTrials" updates="None" val="False" valType="bool"/>
       <Param name="random seed" updates="None" val="" valType="code"/>
       <Param name="loopType" updates="None" val="random" valType="str"/>
       <Param name="nReps" updates="None" val="1" valType="code"/>
@@ -162,19 +162,19 @@
       <Param name="conditions" updates="None" val="[{'impact': u'Images\\Dec_hint.png', 'problem': u'Images\\Decomposition_for_expl.png'}, {'impact': u'Images\\Rel_hint.png', 'problem': u'Images\\Relaxation_for_expl.png'}]" valType="str"/>
       <Param name="Selected rows" updates="None" val="" valType="str"/>
     </LoopInitiator>
-    <LoopInitiator loopType="TrialHandler" name="lagging">
-      <Param name="conditionsFile" updates="None" val="" valType="str"/>
-      <Param name="name" updates="None" val="lagging" valType="code"/>
+    <LoopInitiator loopType="TrialHandler" name="circles">
+      <Param name="conditionsFile" updates="None" val="conditions\number_of_circles.csv" valType="str"/>
+      <Param name="name" updates="None" val="circles" valType="code"/>
       <Param name="isTrials" updates="None" val="True" valType="bool"/>
       <Param name="random seed" updates="None" val="" valType="code"/>
       <Param name="loopType" updates="None" val="sequential" valType="str"/>
-      <Param name="nReps" updates="None" val="10" valType="code"/>
+      <Param name="nReps" updates="None" val="1" valType="code"/>
       <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
-      <Param name="conditions" updates="None" val="None" valType="str"/>
-      <Param name="Selected rows" updates="None" val="" valType="str"/>
+      <Param name="conditions" updates="None" val="[{'lapse': 1}, {'lapse': 2}, {'lapse': 3}, {'lapse': 4}, {'lapse': 5}, {'lapse': 6}, {'lapse': 7}, {'lapse': 8}, {'lapse': 9}, {'lapse': 10}, {'lapse': 11}, {'lapse': 12}, {'lapse': 13}, {'lapse': 14}, {'lapse': 15}, {'lapse': 16}, {'lapse': 17}, {'lapse': 18}, {'lapse': 19}, {'lapse': 20}, {'lapse': 21}, {'lapse': 22}, {'lapse': 23}, {'lapse': 24}, {'lapse': 25}, {'lapse': 26}, {'lapse': 27}, {'lapse': 28}, {'lapse': 29}, {'lapse': 30}, {'lapse': 31}, {'lapse': 32}, {'lapse': 33}, {'lapse': 34}, {'lapse': 35}, {'lapse': 36}, {'lapse': 37}, {'lapse': 38}, {'lapse': 39}, {'lapse': 40}, {'lapse': 41}, {'lapse': 42}, {'lapse': 43}, {'lapse': 44}, {'lapse': 45}, {'lapse': 46}, {'lapse': 47}, {'lapse': 48}, {'lapse': 49}, {'lapse': 50}, {'lapse': 51}, {'lapse': 52}, {'lapse': 53}, {'lapse': 54}, {'lapse': 55}, {'lapse': 56}, {'lapse': 57}, {'lapse': 58}, {'lapse': 59}, {'lapse': 60}, {'lapse': 61}, {'lapse': 62}, {'lapse': 63}, {'lapse': 64}, {'lapse': 65}, {'lapse': 66}, {'lapse': 67}, {'lapse': 68}, {'lapse': 69}, {'lapse': 70}, {'lapse': 71}, {'lapse': 72}, {'lapse': 73}, {'lapse': 74}, {'lapse': 75}, {'lapse': 76}, {'lapse': 77}, {'lapse': 78}, {'lapse': 79}, {'lapse': 80}, {'lapse': 81}, {'lapse': 82}, {'lapse': 83}, {'lapse': 84}, {'lapse': 85}, {'lapse': 86}, {'lapse': 87}, {'lapse': 88}, {'lapse': 89}, {'lapse': 90}, {'lapse': 91}, {'lapse': 92}, {'lapse': 93}, {'lapse': 94}, {'lapse': 95}, {'lapse': 96}, {'lapse': 97}, {'lapse': 98}, {'lapse': 99}, {'lapse': 100}]" valType="str"/>
+      <Param name="Selected rows" updates="None" val="" valType="code"/>
     </LoopInitiator>
     <Routine name="main_event"/>
-    <LoopTerminator name="lagging"/>
+    <LoopTerminator name="circles"/>
     <LoopTerminator name="problems"/>
     <Routine name="finish"/>
   </Flow>
