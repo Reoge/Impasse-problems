@@ -69,34 +69,34 @@
       <CodeComponent name="preparation">
         <Param name="Begin Experiment" updates="constant" val="from random import sample, randint, choice" valType="extendedCode"/>
         <Param name="name" updates="None" val="preparation" valType="code"/>
-        <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin Routine" updates="constant" val="" valType="extendedCode"/>
         <Param name="End Routine" updates="constant" val="" valType="extendedCode"/>
         <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
       </CodeComponent>
     </Routine>
     <Routine name="main_event">
       <CodeComponent name="code">
         <Param name="Begin Experiment" updates="constant" val="delay_time = sample((0,10),2)&amp;#10;&amp;#10;ready_to_shine = 0&amp;#10;time_to_stop = 0&amp;#10;" valType="extendedCode"/>
         <Param name="name" updates="None" val="code" valType="code"/>
-        <Param name="Each Frame" updates="constant" val="if all((blink_time &lt;= t &lt;= time_to_stop,ready_to_shine == 1,type==1)):&amp;#10;    impacts.opacity = (1,0)[blink%2]&amp;#10;    blink += 1&amp;#10;    blink_time += 1&amp;#10;&amp;#10;if t &gt; time_to_stop:&amp;#10;    impacts.opacity = 0&amp;#10;    ready_to_shine = 0" valType="extendedCode"/>
         <Param name="Begin Routine" updates="constant" val="blink = 0&amp;#10;blink_time = delay #также и для дистракции оно же&amp;#10;distraction = u'Начинайте считать от %d' % randint(1,10)" valType="extendedCode"/>
         <Param name="End Routine" updates="constant" val="if 'e' == problem_control.keys:&amp;#10;    circles.finished = True&amp;#10;    ready_to_shine = 0&amp;#10;    impacts.opacity = 0&amp;#10;else:&amp;#10;    ready_to_shine = 1&amp;#10;    time_to_stop = 10 + delay" valType="extendedCode"/>
-        <Param name="End Experiment" updates="constant" val="#куски кода, который нужно вставлять в режиме кодера, пусть будет здесь, пока я чего-нибудь получше не придумаю&amp;#10;&quot;&quot;&quot;&amp;#10;from __future__ import absolute_import, division&amp;#10;from psychopy import locale_setup, sound, gui, visual, core, data, event, logging&amp;#10;from psychopy.constants import (NOT_STARTED, STARTED, PLAYING, PAUSED,&amp;#10;                                STOPPED, FINISHED, PRESSED, RELEASED, FOREVER)&amp;#10;from random import sample, randint, choice&amp;#10;import os  # handy system and path functions&amp;#10;import sys  # to get file system encoding&amp;#10;&quot;&quot;&quot;&amp;#10;&amp;#10;&amp;#10;&quot;&quot;&quot;&amp;#10;prepand_type = choice((1,0))&amp;#10;for num, cond in enumerate(problems.trialList):&amp;#10;    cond['delay'] = delay_time[num]&amp;#10;    cond['type'] = prepand_type#1 - hint, 0 - distraction&amp;#10;&amp;#10;&quot;&quot;&quot;" valType="extendedCode"/>
+        <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Each Frame" updates="constant" val="if all((blink_time &lt;= t &lt;= time_to_stop,ready_to_shine == 1,type==1)):&amp;#10;    impacts.opacity = (1,0)[blink%2]&amp;#10;    blink += 1&amp;#10;    blink_time += 1&amp;#10;&amp;#10;if t &gt; time_to_stop:&amp;#10;    impacts.opacity = 0&amp;#10;    ready_to_shine = 0" valType="extendedCode"/>
       </CodeComponent>
       <TextComponent name="impacts_distr">
         <Param name="opacity" updates="constant" val="1" valType="code"/>
         <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
         <Param name="name" updates="None" val="impacts_distr" valType="code"/>
-        <Param name="color" updates="constant" val="white" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="white" valType="str"/>
+        <Param name="text" updates="set every repeat" val="$distraction" valType="str"/>
         <Param name="stopVal" updates="constant" val="ready_to_shine ==0" valType="code"/>
         <Param name="durationEstim" updates="None" val="" valType="code"/>
         <Param name="pos" updates="constant" val="(0, -0.5)" valType="code"/>
         <Param name="flip" updates="constant" val="" valType="str"/>
         <Param name="startEstim" updates="None" val="" valType="code"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
-        <Param name="text" updates="set every repeat" val="$distraction" valType="str"/>
         <Param name="startType" updates="None" val="condition" valType="str"/>
         <Param name="ori" updates="constant" val="0" valType="code"/>
         <Param name="stopType" updates="None" val="condition" valType="str"/>
@@ -170,15 +170,15 @@
         <Param name="opacity" updates="constant" val="1" valType="code"/>
         <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
         <Param name="name" updates="None" val="Finale" valType="code"/>
-        <Param name="color" updates="set every frame" val="choice((red,yellow,green,blue))" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="set every frame" val="$choice(('red','yellow','green','blue'))" valType="str"/>
+        <Param name="text" updates="constant" val="Спасибо что посмотрел" valType="str"/>
         <Param name="stopVal" updates="constant" val="3.0" valType="code"/>
         <Param name="durationEstim" updates="None" val="" valType="code"/>
         <Param name="pos" updates="constant" val="(0, 0)" valType="code"/>
         <Param name="flip" updates="constant" val="" valType="str"/>
         <Param name="startEstim" updates="None" val="" valType="code"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
-        <Param name="text" updates="constant" val="Спасибо что посмотрел" valType="str"/>
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
         <Param name="ori" updates="constant" val="0" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>

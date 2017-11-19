@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy2 Experiment Builder (v1.85.4),
-    on 2017_11_07_0004
+    on 2017_11_19_1557
 If you publish work using this script please cite the PsychoPy publications:
     Peirce, JW (2007) PsychoPy - Psychophysics software in Python.
         Journal of Neuroscience Methods, 162(1-2), 8-13.
@@ -37,7 +37,7 @@ filename = _thisDir + os.sep + u'data/%s_%s_%s' % (expInfo['participant'], expNa
 # An ExperimentHandler isn't essential but helps with data saving
 thisExp = data.ExperimentHandler(name=expName, version='',
     extraInfo=expInfo, runtimeInfo=None,
-    originPath=None,
+    originPath=u'C:\\Experiments\\Impasse problems\\untitled.psyexp',
     savePickle=True, saveWideText=True,
     dataFileName=filename)
 # save a log file for detail verbose info
@@ -70,21 +70,22 @@ instruction_text = visual.ImageStim(
     color=[1,1,1], colorSpace='rgb', opacity=1,
     flipHoriz=False, flipVert=False,
     texRes=128, interpolate=True, depth=0.0)
+from random import sample, randint, choice
 
 # Initialize components for Routine "counting"
 countingClock = core.Clock()
 counting_training_part_1 = visual.TextStim(win=win, name='counting_training_part_1',
     text=u'\u0418\u043d\u043e\u0433\u0434\u0430 \u043d\u0430 \u043c\u043e\u043d\u0438\u0442\u043e\u0440\u0435 \u0432\u044b \u0431\u0443\u0434\u0435\u0442\u0435 \u0432\u0438\u0434\u0435\u0442\u044c \u043d\u0430\u0434\u043f\u0438\u0441\u044c "\u0421\u0447\u0451\u0442 \u0442\u0440\u043e\u0439\u043a\u0430\u043c\u0438" \u0438 \u0446\u0438\u0444\u0440\u0443, \u0441 \u043a\u043e\u0442\u043e\u0440\u043e\u0439 \u0441\u043b\u0435\u0434\u0443\u0435\u0442 \u043d\u0430\u0447\u0430\u0442\u044c. \u0412 \u0442\u0430\u043a\u043e\u043c \u0441\u043b\u0443\u0447\u0430\u0435, \u0432\u0430\u043c \u043d\u0443\u0436\u043d\u043e \u0431\u0443\u0434\u0435\u0442 \u0432\u0441\u043b\u0443\u0445 \u043d\u0430\u0437\u044b\u0432\u0430\u0442\u044c \u043f\u043e\u0441\u043b\u0435\u0434\u043e\u0432\u0430\u0442\u0435\u043b\u044c\u043d\u043e\u0441\u0442\u044c \u0446\u0438\u0444\u0440. \u041d\u0430\u043f\u0440\u0438\u043c\u0435\u0440, \u0441\u0447\u0451\u0442 \u0442\u0440\u043e\u0439\u043a\u0430\u043c\u0438 \u043e\u0442 1 \u0431\u0443\u0434\u0435\u0442 \u0432\u044b\u0433\u043b\u044f\u0434\u0435\u0442\u044c \u0442\u0430\u043a: 1, 4, 7, 10, 13, 16, 19...',
-    font=u'Arial',
+    font='Arial',
     pos=(0, 0.4), height=0.1, wrapWidth=1.5, ori=0, 
-    color=u'white', colorSpace='rgb', opacity=1,
+    color='white', colorSpace='rgb', opacity=1,
     depth=0.0);
 
 counting_training_part_2 = visual.TextStim(win=win, name='counting_training_part_2',
     text='default text',
-    font=u'Arial',
+    font='Arial',
     pos=(0, -0.2), height=0.1, wrapWidth=1.5, ori=0, 
-    color=u'white', colorSpace='rgb', opacity=1,
+    color='white', colorSpace='rgb', opacity=1,
     depth=-2.0);
 
 # Initialize components for Routine "main_event"
@@ -96,9 +97,9 @@ time_to_stop = 0
 
 impacts_distr = visual.TextStim(win=win, name='impacts_distr',
     text='default text',
-    font=u'Arial',
+    font='Arial',
     pos=(0, -0.5), height=0.1, wrapWidth=None, ori=0, 
-    color=u'white', colorSpace='rgb', opacity=1,
+    color='white', colorSpace='rgb', opacity=1,
     depth=-1.0);
 this_problem = visual.ImageStim(
     win=win, name='this_problem',
@@ -122,7 +123,7 @@ Finale = visual.TextStim(win=win, name='Finale',
     font=u'Arial',
     pos=(0, 0), height=0.1, wrapWidth=None, ori=0, 
     color=1.0, colorSpace='rgb', opacity=1,
-    depth=-3.0);
+    depth=0.0);
 
 # Create some handy timers
 globalClock = core.Clock()  # to track the time since experiment started
@@ -307,7 +308,6 @@ problems = data.TrialHandler(nReps=1, method='random',
     seed=None, name='problems')
 thisExp.addLoop(problems)  # add the loop to the experiment
 thisProblem = problems.trialList[0]  # so we can initialise stimuli with some values
-
 prepand_type = choice((1,0))
 for num, cond in enumerate(problems.trialList):
     cond['delay'] = delay_time[num]
@@ -519,13 +519,7 @@ for thisComponent in finishComponents:
         thisComponent.setAutoDraw(False)
 
 
-#кусок кода, который нужно вставлять в режиме кодера, пусть будет здесь, пока я чего-нибудь получше не придумаю
-"""
-for num, cond in enumerate(problems.trialList):
-    cond['delay'] = delay_time[num]
-    cond['type'] = sample((1,0),1)[0] #1 - hint, 0 - distraction
 
-"""
 # these shouldn't be strictly necessary (should auto-save)
 thisExp.saveAsWideText(filename+'.csv')
 thisExp.saveAsPickle(filename)
