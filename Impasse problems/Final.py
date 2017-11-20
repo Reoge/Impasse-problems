@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy2 Experiment Builder (v1.85.4),
-    on 2017_11_20_2007
+    on 2017_11_20_2132
 If you publish work using this script please cite the PsychoPy publications:
     Peirce, JW (2007) PsychoPy - Psychophysics software in Python.
         Journal of Neuroscience Methods, 162(1-2), 8-13.
@@ -137,10 +137,10 @@ impacts = visual.ImageStim(
 # Initialize components for Routine "finish"
 finishClock = core.Clock()
 Finale = visual.TextStim(win=win, name='Finale',
-    text=u'\u0421\u043f\u0430\u0441\u0438\u0431\u043e \u0447\u0442\u043e \u043f\u043e\u0441\u043c\u043e\u0442\u0440\u0435\u043b',
-    font='Arial',
+    text=u'\u0421\u043f\u0430\u0441\u0438\u0431\u043e \u0437\u0430 \u0443\u0447\u0430\u0441\u0442\u0438\u0435',
+    font=u'Arial',
     pos=(0, 0), height=0.1, wrapWidth=None, ori=0, 
-    color=1.0, colorSpace='rgb', opacity=1,
+    color=u'white', colorSpace='rgb', opacity=1,
     depth=0.0);
 
 # Create some handy timers
@@ -491,9 +491,10 @@ for thisProblem in problems:
         impacts_distr.setText(distraction)
         this_problem.setImage(problem)
         impacts.setImage(impact)
-        problem_control = event.BuilderKeyResponse()
+        problem_control_impass = event.BuilderKeyResponse()
+        problem_control_exit = event.BuilderKeyResponse()
         # keep track of which components have finished
-        main_eventComponents = [impacts_distr, this_problem, impacts, problem_control]
+        main_eventComponents = [impacts_distr, this_problem, impacts, problem_control_impass, problem_control_exit]
         for thisComponent in main_eventComponents:
             if hasattr(thisComponent, 'status'):
                 thisComponent.status = NOT_STARTED
@@ -536,26 +537,48 @@ for thisProblem in problems:
                 impacts.frameNStart = frameN  # exact frame index
                 impacts.setAutoDraw(True)
             
-            # *problem_control* updates
-            if t >= 0.0 and problem_control.status == NOT_STARTED:
+            # *problem_control_impass* updates
+            if t >= time_to_stop and problem_control_impass.status == NOT_STARTED:
                 # keep track of start time/frame for later
-                problem_control.tStart = t
-                problem_control.frameNStart = frameN  # exact frame index
-                problem_control.status = STARTED
+                problem_control_impass.tStart = t
+                problem_control_impass.frameNStart = frameN  # exact frame index
+                problem_control_impass.status = STARTED
                 # keyboard checking is just starting
-                win.callOnFlip(problem_control.clock.reset)  # t=0 on next screen flip
-            if problem_control.status == STARTED:
-                theseKeys = event.getKeys(keyList=['e', 'space'])
+                win.callOnFlip(problem_control_impass.clock.reset)  # t=0 on next screen flip
+                event.clearEvents(eventType='keyboard')
+            if problem_control_impass.status == STARTED:
+                theseKeys = event.getKeys(keyList=['space'])
                 
                 # check for quit:
                 if "escape" in theseKeys:
                     endExpNow = True
                 if len(theseKeys) > 0:  # at least one key was pressed
-                    if problem_control.keys == []:  # then this was the first keypress
-                        problem_control.keys = theseKeys[0]  # just the first key pressed
-                        problem_control.rt = problem_control.clock.getTime()
+                    if problem_control_impass.keys == []:  # then this was the first keypress
+                        problem_control_impass.keys = theseKeys[0]  # just the first key pressed
+                        problem_control_impass.rt = problem_control_impass.clock.getTime()
                         # a response ends the routine
                         continueRoutine = False
+            
+            # *problem_control_exit* updates
+            if t >= 2.0 and problem_control_exit.status == NOT_STARTED:
+                # keep track of start time/frame for later
+                problem_control_exit.tStart = t
+                problem_control_exit.frameNStart = frameN  # exact frame index
+                problem_control_exit.status = STARTED
+                # keyboard checking is just starting
+                win.callOnFlip(problem_control_exit.clock.reset)  # t=0 on next screen flip
+                event.clearEvents(eventType='keyboard')
+            if problem_control_exit.status == STARTED:
+                theseKeys = event.getKeys(keyList=['e'])
+                
+                # check for quit:
+                if "escape" in theseKeys:
+                    endExpNow = True
+                if len(theseKeys) > 0:  # at least one key was pressed
+                    problem_control_exit.keys = theseKeys[-1]  # just the last key pressed
+                    problem_control_exit.rt = problem_control_exit.clock.getTime()
+                    # a response ends the routine
+                    continueRoutine = False
             
             # check if all components have finished
             if not continueRoutine:  # a component has requested a forced-end of Routine
@@ -578,19 +601,31 @@ for thisProblem in problems:
         for thisComponent in main_eventComponents:
             if hasattr(thisComponent, "setAutoDraw"):
                 thisComponent.setAutoDraw(False)
-        if 'e' == problem_control.keys:
+        if 'e' == problem_control_exit.keys:
             circles.finished = True
             ready_to_shine = 0
             impacts.opacity = 0
-        else:
+            time_to_stop = 0
+        
+        
+        if 'space' == problem_control_impass.keys:
             ready_to_shine = 1
             time_to_stop = 10 + delay
+        
+        if 'e' == problem_control_exit.keys and 'space' == problem_control_impass.keys:
+            print u'We have a problem Huston'
         # check responses
-        if problem_control.keys in ['', [], None]:  # No response was made
-            problem_control.keys=None
-        circles.addData('problem_control.keys',problem_control.keys)
-        if problem_control.keys != None:  # we had a response
-            circles.addData('problem_control.rt', problem_control.rt)
+        if problem_control_impass.keys in ['', [], None]:  # No response was made
+            problem_control_impass.keys=None
+        circles.addData('problem_control_impass.keys',problem_control_impass.keys)
+        if problem_control_impass.keys != None:  # we had a response
+            circles.addData('problem_control_impass.rt', problem_control_impass.rt)
+        # check responses
+        if problem_control_exit.keys in ['', [], None]:  # No response was made
+            problem_control_exit.keys=None
+        circles.addData('problem_control_exit.keys',problem_control_exit.keys)
+        if problem_control_exit.keys != None:  # we had a response
+            circles.addData('problem_control_exit.rt', problem_control_exit.rt)
         # the Routine "main_event" was not non-slip safe, so reset the non-slip timer
         routineTimer.reset()
         thisExp.nextEntry()
@@ -629,8 +664,6 @@ while continueRoutine and routineTimer.getTime() > 0:
     frameRemains = 0.0 + 3.0- win.monitorFramePeriod * 0.75  # most of one frame period left
     if Finale.status == STARTED and t >= frameRemains:
         Finale.setAutoDraw(False)
-    if Finale.status == STARTED:  # only update if drawing
-        Finale.setColor(choice(('red','yellow','green','blue')), colorSpace='rgb', log=False)
     
     # check if all components have finished
     if not continueRoutine:  # a component has requested a forced-end of Routine

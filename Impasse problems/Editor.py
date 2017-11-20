@@ -5,10 +5,10 @@ from time import sleep
 
 
 try:
-        copyfile('untitled_lastrun.py', 'Almost_Finale.py')
+        copyfile('untitled_lastrun.py', 'Final.py')
 except FileNotFoundError:
         print("Файл с изменениями внесеными через билдер не найден")
-        sleep(5)
+        input = 'Закроется при нажатии Enter'
         exit()
 
 #переменные, чтобы проследить, что все изменения были сделаны
@@ -44,14 +44,14 @@ delete_lines = [
                          ]
 delete_lines = [line+'\n' for line in delete_lines]
 
-delete_files = ['untitled_lastrun.py', 'untitled.pyc',  'Almost_Finale.pyc']
+delete_files = ['untitled_lastrun.py', 'untitled.pyc',  'Final.pyc']
 
 #дополнительные переменные, чтобы проследить, что всё хорошо
 q_changes = len(changes)
 q_deletes = len(delete_lines)
 q_delets_f = len(delete_files)
 
-with fileinput.FileInput('Almost_Finale.py', inplace = True) as f:
+with fileinput.FileInput('Final.py', inplace = True) as f:
     for line in f:
         if  line in changes:
             line= line.replace(line, line + changes[line])
@@ -79,5 +79,5 @@ print(f'Удалено файлов {var_del_filses}, удалены все фа
 
 
 
-sleep(5)
+input = 'Закроется при нажатии Enter'
 exit()

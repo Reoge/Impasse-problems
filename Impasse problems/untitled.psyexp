@@ -27,54 +27,6 @@
     <Param name="Screen" updates="None" val="1" valType="num"/>
   </Settings>
   <Routines>
-    <Routine name="instruction">
-      <ImageComponent name="instruction_text">
-        <Param name="opacity" updates="constant" val="1" valType="code"/>
-        <Param name="flipVert" updates="constant" val="False" valType="bool"/>
-        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
-        <Param name="name" updates="None" val="instruction_text" valType="code"/>
-        <Param name="color" updates="constant" val="$[1,1,1]" valType="str"/>
-        <Param name="stopVal" updates="constant" val="" valType="code"/>
-        <Param name="durationEstim" updates="None" val="" valType="code"/>
-        <Param name="mask" updates="constant" val="None" valType="str"/>
-        <Param name="pos" updates="constant" val="(0, 0)" valType="code"/>
-        <Param name="interpolate" updates="constant" val="linear" valType="str"/>
-        <Param name="startEstim" updates="None" val="" valType="code"/>
-        <Param name="units" updates="None" val="from exp settings" valType="str"/>
-        <Param name="texture resolution" updates="constant" val="128" valType="code"/>
-        <Param name="startType" updates="None" val="time (s)" valType="str"/>
-        <Param name="ori" updates="constant" val="0" valType="code"/>
-        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
-        <Param name="startVal" updates="None" val="0.0" valType="code"/>
-        <Param name="flipHoriz" updates="constant" val="False" valType="bool"/>
-        <Param name="image" updates="constant" val="Images\Instruction.png" valType="str"/>
-        <Param name="size" updates="constant" val="(1.6,1)" valType="code"/>
-      </ImageComponent>
-      <KeyboardComponent name="instruction_end">
-        <Param name="correctAns" updates="constant" val="" valType="str"/>
-        <Param name="storeCorrect" updates="constant" val="False" valType="bool"/>
-        <Param name="name" updates="None" val="instruction_end" valType="code"/>
-        <Param name="stopVal" updates="constant" val="" valType="code"/>
-        <Param name="durationEstim" updates="None" val="" valType="code"/>
-        <Param name="forceEndRoutine" updates="constant" val="True" valType="bool"/>
-        <Param name="startEstim" updates="None" val="" valType="code"/>
-        <Param name="discard previous" updates="constant" val="True" valType="bool"/>
-        <Param name="startType" updates="None" val="time (s)" valType="str"/>
-        <Param name="allowedKeys" updates="constant" val="'space'" valType="code"/>
-        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
-        <Param name="startVal" updates="None" val="0.0" valType="code"/>
-        <Param name="store" updates="constant" val="last key" valType="str"/>
-        <Param name="syncScreenRefresh" updates="constant" val="True" valType="bool"/>
-      </KeyboardComponent>
-      <CodeComponent name="preparation">
-        <Param name="Begin Experiment" updates="constant" val="from random import sample, randint, choice" valType="extendedCode"/>
-        <Param name="name" updates="None" val="preparation" valType="code"/>
-        <Param name="Begin Routine" updates="constant" val="" valType="extendedCode"/>
-        <Param name="End Routine" updates="constant" val="" valType="extendedCode"/>
-        <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
-      </CodeComponent>
-    </Routine>
     <Routine name="practice">
       <CodeComponent name="practice_code">
         <Param name="Begin Experiment" updates="constant" val="neutral_images = [u'Images\\neutral_1.jpg', u'Images\\neutral_2.jpg']&amp;#10;shuffle(neutral_images)" valType="extendedCode"/>
@@ -143,12 +95,60 @@
         <Param name="size" updates="constant" val="(0.4,0.4)" valType="code"/>
       </ImageComponent>
     </Routine>
+    <Routine name="instruction">
+      <ImageComponent name="instruction_text">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="flipVert" updates="constant" val="False" valType="bool"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="instruction_text" valType="code"/>
+        <Param name="color" updates="constant" val="$[1,1,1]" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="mask" updates="constant" val="None" valType="str"/>
+        <Param name="pos" updates="constant" val="(0, 0)" valType="code"/>
+        <Param name="interpolate" updates="constant" val="linear" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="texture resolution" updates="constant" val="128" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="flipHoriz" updates="constant" val="False" valType="bool"/>
+        <Param name="image" updates="constant" val="Images\Instruction.png" valType="str"/>
+        <Param name="size" updates="constant" val="(1.6,1)" valType="code"/>
+      </ImageComponent>
+      <KeyboardComponent name="instruction_end">
+        <Param name="correctAns" updates="constant" val="" valType="str"/>
+        <Param name="storeCorrect" updates="constant" val="False" valType="bool"/>
+        <Param name="name" updates="None" val="instruction_end" valType="code"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="forceEndRoutine" updates="constant" val="True" valType="bool"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="discard previous" updates="constant" val="True" valType="bool"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="allowedKeys" updates="constant" val="'space'" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="store" updates="constant" val="last key" valType="str"/>
+        <Param name="syncScreenRefresh" updates="constant" val="True" valType="bool"/>
+      </KeyboardComponent>
+      <CodeComponent name="preparation">
+        <Param name="Begin Experiment" updates="constant" val="from random import sample, randint, choice" valType="extendedCode"/>
+        <Param name="name" updates="None" val="preparation" valType="code"/>
+        <Param name="Begin Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
+      </CodeComponent>
+    </Routine>
     <Routine name="main_event">
       <CodeComponent name="code">
         <Param name="Begin Experiment" updates="constant" val="delay_time = sample((0,10),2)&amp;#10;&amp;#10;ready_to_shine = 0&amp;#10;time_to_stop = 0&amp;#10;" valType="extendedCode"/>
         <Param name="name" updates="None" val="code" valType="code"/>
         <Param name="Begin Routine" updates="constant" val="blink = 0&amp;#10;blink_time = delay #также и для дистракции оно же&amp;#10;distraction = u'Начинайте считать от %d' % randint(1,10)" valType="extendedCode"/>
-        <Param name="End Routine" updates="constant" val="if 'e' == problem_control.keys:&amp;#10;    circles.finished = True&amp;#10;    ready_to_shine = 0&amp;#10;    impacts.opacity = 0&amp;#10;else:&amp;#10;    ready_to_shine = 1&amp;#10;    time_to_stop = 10 + delay" valType="extendedCode"/>
+        <Param name="End Routine" updates="constant" val="if 'e' == problem_control_exit.keys:&amp;#10;    circles.finished = True&amp;#10;    ready_to_shine = 0&amp;#10;    impacts.opacity = 0&amp;#10;    time_to_stop = 0&amp;#10;&amp;#10;&amp;#10;if 'space' == problem_control_impass.keys:&amp;#10;    ready_to_shine = 1&amp;#10;    time_to_stop = 10 + delay&amp;#10;&amp;#10;if 'e' == problem_control_exit.keys and 'space' == problem_control_impass.keys:&amp;#10;    print u'We have a problem Huston'" valType="extendedCode"/>
         <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Each Frame" updates="constant" val="if all((blink_time &lt;= t &lt;= time_to_stop,ready_to_shine == 1,type==1)):&amp;#10;    impacts.opacity = (1,0)[blink%2]&amp;#10;    blink += 1&amp;#10;    blink_time += 1&amp;#10;&amp;#10;if t &gt; time_to_stop:&amp;#10;    impacts.opacity = 0&amp;#10;    ready_to_shine = 0" valType="extendedCode"/>
       </CodeComponent>
@@ -216,20 +216,36 @@
         <Param name="image" updates="set every repeat" val="$impact" valType="str"/>
         <Param name="size" updates="constant" val="" valType="code"/>
       </ImageComponent>
-      <KeyboardComponent name="problem_control">
+      <KeyboardComponent name="problem_control_impass">
         <Param name="correctAns" updates="constant" val="" valType="str"/>
         <Param name="storeCorrect" updates="constant" val="False" valType="bool"/>
-        <Param name="name" updates="None" val="problem_control" valType="code"/>
+        <Param name="name" updates="None" val="problem_control_impass" valType="code"/>
         <Param name="stopVal" updates="constant" val="" valType="code"/>
         <Param name="durationEstim" updates="None" val="" valType="code"/>
         <Param name="forceEndRoutine" updates="constant" val="True" valType="bool"/>
         <Param name="startEstim" updates="None" val="" valType="code"/>
-        <Param name="discard previous" updates="constant" val="False" valType="bool"/>
+        <Param name="discard previous" updates="constant" val="True" valType="bool"/>
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
-        <Param name="allowedKeys" updates="constant" val="'e', 'space'" valType="code"/>
+        <Param name="allowedKeys" updates="constant" val="'space'" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
-        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="startVal" updates="None" val="time_to_stop" valType="code"/>
         <Param name="store" updates="constant" val="first key" valType="str"/>
+        <Param name="syncScreenRefresh" updates="constant" val="True" valType="bool"/>
+      </KeyboardComponent>
+      <KeyboardComponent name="problem_control_exit">
+        <Param name="correctAns" updates="constant" val="" valType="str"/>
+        <Param name="storeCorrect" updates="constant" val="False" valType="bool"/>
+        <Param name="name" updates="None" val="problem_control_exit" valType="code"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="forceEndRoutine" updates="constant" val="True" valType="bool"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="discard previous" updates="constant" val="True" valType="bool"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="allowedKeys" updates="constant" val="'e'" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="2.0" valType="code"/>
+        <Param name="store" updates="constant" val="last key" valType="str"/>
         <Param name="syncScreenRefresh" updates="constant" val="True" valType="bool"/>
       </KeyboardComponent>
     </Routine>
@@ -239,8 +255,8 @@
         <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
         <Param name="name" updates="None" val="Finale" valType="code"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
-        <Param name="color" updates="set every frame" val="$choice(('red','yellow','green','blue'))" valType="str"/>
-        <Param name="text" updates="constant" val="Спасибо что посмотрел" valType="str"/>
+        <Param name="color" updates="constant" val="white" valType="str"/>
+        <Param name="text" updates="constant" val="Спасибо за участие" valType="str"/>
         <Param name="stopVal" updates="constant" val="3.0" valType="code"/>
         <Param name="durationEstim" updates="None" val="" valType="code"/>
         <Param name="pos" updates="constant" val="(0, 0)" valType="code"/>
