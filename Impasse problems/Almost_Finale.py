@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy2 Experiment Builder (v1.85.4),
-    on 2017_11_19_1557
+    on 2017_11_20_2007
 If you publish work using this script please cite the PsychoPy publications:
     Peirce, JW (2007) PsychoPy - Psychophysics software in Python.
         Journal of Neuroscience Methods, 162(1-2), 8-13.
@@ -14,7 +14,7 @@ from __future__ import absolute_import, division
 from psychopy import locale_setup, sound, gui, visual, core, data, event, logging
 from psychopy.constants import (NOT_STARTED, STARTED, PLAYING, PAUSED,
                                 STOPPED, FINISHED, PRESSED, RELEASED, FOREVER)
-from random import sample, randint, choice
+from random import sample, randint, choice, shuffle
 import os  # handy system and path functions
 import sys  # to get file system encoding
 
@@ -24,7 +24,7 @@ os.chdir(_thisDir)
 
 # Store info about the experiment session
 expName = 'untitled'  # from the Builder filename that created this script
-expInfo = {u'session': u'001', u'participant': u''}
+expInfo = {u'participant': u''}
 dlg = gui.DlgFromDict(dictionary=expInfo, title=expName)
 if dlg.OK == False:
     core.quit()  # user pressed cancel
@@ -88,6 +88,24 @@ counting_training_part_2 = visual.TextStim(win=win, name='counting_training_part
     color='white', colorSpace='rgb', opacity=1,
     depth=-2.0);
 
+# Initialize components for Routine "practice"
+practiceClock = core.Clock()
+neutral_images = [u'Images\\neutral_1.jpg', u'Images\\neutral_2.jpg']
+shuffle(neutral_images)
+practice_text = visual.TextStim(win=win, name='practice_text',
+    text=u'\u041d\u0430\u0436\u043c\u0438\u0442\u0435 \u043f\u0440\u043e\u0431\u0435\u043b',
+    font='Arial',
+    pos=(0, 0.4), height=0.1, wrapWidth=None, ori=0, 
+    color='white', colorSpace='rgb', opacity=1,
+    depth=-1.0);
+practice_neutral = visual.ImageStim(
+    win=win, name='practice_neutral',
+    image='sin', mask=None,
+    ori=0, pos=(0, 0), size=(0.4,0.4),
+    color=[1,1,1], colorSpace='rgb', opacity=1,
+    flipHoriz=False, flipVert=False,
+    texRes=128, interpolate=True, depth=-3.0)
+
 # Initialize components for Routine "main_event"
 main_eventClock = core.Clock()
 delay_time = sample((0,10),2)
@@ -120,7 +138,7 @@ impacts = visual.ImageStim(
 finishClock = core.Clock()
 Finale = visual.TextStim(win=win, name='Finale',
     text=u'\u0421\u043f\u0430\u0441\u0438\u0431\u043e \u0447\u0442\u043e \u043f\u043e\u0441\u043c\u043e\u0442\u0440\u0435\u043b',
-    font=u'Arial',
+    font='Arial',
     pos=(0, 0), height=0.1, wrapWidth=None, ori=0, 
     color=1.0, colorSpace='rgb', opacity=1,
     depth=0.0);
@@ -300,6 +318,124 @@ if stop_counting.keys != None:  # we had a response
 thisExp.nextEntry()
 # the Routine "counting" was not non-slip safe, so reset the non-slip timer
 routineTimer.reset()
+
+# set up handler to look after randomisation of conditions etc
+practice_loop = data.TrialHandler(nReps=3, method='random', 
+    extraInfo=expInfo, originPath=-1,
+    trialList=[None],
+    seed=None, name='practice_loop')
+thisExp.addLoop(practice_loop)  # add the loop to the experiment
+thisPractice_loop = practice_loop.trialList[0]  # so we can initialise stimuli with some values
+# abbreviate parameter names if possible (e.g. rgb = thisPractice_loop.rgb)
+if thisPractice_loop != None:
+    for paramName in thisPractice_loop.keys():
+        exec(paramName + '= thisPractice_loop.' + paramName)
+
+for thisPractice_loop in practice_loop:
+    currentLoop = practice_loop
+    # abbreviate parameter names if possible (e.g. rgb = thisPractice_loop.rgb)
+    if thisPractice_loop != None:
+        for paramName in thisPractice_loop.keys():
+            exec(paramName + '= thisPractice_loop.' + paramName)
+    
+    # ------Prepare to start Routine "practice"-------
+    t = 0
+    practiceClock.reset()  # clock
+    frameN = -1
+    continueRoutine = True
+    # update component parameters for each repeat
+    neutral_choice = None
+    
+    if practice_loop.thisN >= 1:
+        neutral_choice = neutral_images.pop()
+    
+    practice_keyb = event.BuilderKeyResponse()
+    practice_neutral.setImage(neutral_choice)
+    # keep track of which components have finished
+    practiceComponents = [practice_text, practice_keyb, practice_neutral]
+    for thisComponent in practiceComponents:
+        if hasattr(thisComponent, 'status'):
+            thisComponent.status = NOT_STARTED
+    
+    # -------Start Routine "practice"-------
+    while continueRoutine:
+        # get current time
+        t = practiceClock.getTime()
+        frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
+        # update/draw components on each frame
+        
+        
+        # *practice_text* updates
+        if t >= 0.0 and practice_text.status == NOT_STARTED:
+            # keep track of start time/frame for later
+            practice_text.tStart = t
+            practice_text.frameNStart = frameN  # exact frame index
+            practice_text.setAutoDraw(True)
+        
+        # *practice_keyb* updates
+        if t >= 0.0 and practice_keyb.status == NOT_STARTED:
+            # keep track of start time/frame for later
+            practice_keyb.tStart = t
+            practice_keyb.frameNStart = frameN  # exact frame index
+            practice_keyb.status = STARTED
+            # keyboard checking is just starting
+            win.callOnFlip(practice_keyb.clock.reset)  # t=0 on next screen flip
+            event.clearEvents(eventType='keyboard')
+        if practice_keyb.status == STARTED:
+            theseKeys = event.getKeys(keyList=['space'])
+            
+            # check for quit:
+            if "escape" in theseKeys:
+                endExpNow = True
+            if len(theseKeys) > 0:  # at least one key was pressed
+                practice_keyb.keys = theseKeys[-1]  # just the last key pressed
+                practice_keyb.rt = practice_keyb.clock.getTime()
+                # a response ends the routine
+                continueRoutine = False
+        
+        # *practice_neutral* updates
+        if (practice_loop.thisN >= 1) and practice_neutral.status == NOT_STARTED:
+            # keep track of start time/frame for later
+            practice_neutral.tStart = t
+            practice_neutral.frameNStart = frameN  # exact frame index
+            practice_neutral.setAutoDraw(True)
+        if practice_neutral.status == STARTED and t >= (practice_neutral.tStart + 10.0):
+            practice_neutral.setAutoDraw(False)
+        
+        # check if all components have finished
+        if not continueRoutine:  # a component has requested a forced-end of Routine
+            break
+        continueRoutine = False  # will revert to True if at least one component still running
+        for thisComponent in practiceComponents:
+            if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
+                continueRoutine = True
+                break  # at least one component has not yet finished
+        
+        # check for quit (the Esc key)
+        if endExpNow or event.getKeys(keyList=["escape"]):
+            core.quit()
+        
+        # refresh the screen
+        if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
+            win.flip()
+    
+    # -------Ending Routine "practice"-------
+    for thisComponent in practiceComponents:
+        if hasattr(thisComponent, "setAutoDraw"):
+            thisComponent.setAutoDraw(False)
+    
+    # check responses
+    if practice_keyb.keys in ['', [], None]:  # No response was made
+        practice_keyb.keys=None
+    practice_loop.addData('practice_keyb.keys',practice_keyb.keys)
+    if practice_keyb.keys != None:  # we had a response
+        practice_loop.addData('practice_keyb.rt', practice_keyb.rt)
+    # the Routine "practice" was not non-slip safe, so reset the non-slip timer
+    routineTimer.reset()
+    thisExp.nextEntry()
+    
+# completed 3 repeats of 'practice_loop'
+
 
 # set up handler to look after randomisation of conditions etc
 problems = data.TrialHandler(nReps=1, method='random', 
@@ -517,6 +653,7 @@ while continueRoutine and routineTimer.getTime() > 0:
 for thisComponent in finishComponents:
     if hasattr(thisComponent, "setAutoDraw"):
         thisComponent.setAutoDraw(False)
+
 
 
 
