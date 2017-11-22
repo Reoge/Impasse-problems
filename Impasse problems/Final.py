@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy2 Experiment Builder (v1.85.4),
-    on 2017_11_20_2132
+    on 2017_11_22_0016
 If you publish work using this script please cite the PsychoPy publications:
     Peirce, JW (2007) PsychoPy - Psychophysics software in Python.
         Journal of Neuroscience Methods, 162(1-2), 8-13.
@@ -61,8 +61,8 @@ if expInfo['frameRate'] != None:
 else:
     frameDur = 1.0 / 60.0  # could not measure, so guess
 
-# Initialize components for Routine "instruction"
-instructionClock = core.Clock()
+# Initialize components for Routine "instruction_overall"
+instruction_overallClock = core.Clock()
 instruction_text = visual.ImageStim(
     win=win, name='instruction_text',
     image='Images\\Instruction.png', mask=None,
@@ -70,22 +70,22 @@ instruction_text = visual.ImageStim(
     color=[1,1,1], colorSpace='rgb', opacity=1,
     flipHoriz=False, flipVert=False,
     texRes=128, interpolate=True, depth=0.0)
-from random import sample, randint, choice
 
 # Initialize components for Routine "counting"
 countingClock = core.Clock()
-counting_training_part_1 = visual.TextStim(win=win, name='counting_training_part_1',
-    text=u'\u0418\u043d\u043e\u0433\u0434\u0430 \u043d\u0430 \u043c\u043e\u043d\u0438\u0442\u043e\u0440\u0435 \u0432\u044b \u0431\u0443\u0434\u0435\u0442\u0435 \u0432\u0438\u0434\u0435\u0442\u044c \u043d\u0430\u0434\u043f\u0438\u0441\u044c "\u0421\u0447\u0451\u0442 \u0442\u0440\u043e\u0439\u043a\u0430\u043c\u0438" \u0438 \u0446\u0438\u0444\u0440\u0443, \u0441 \u043a\u043e\u0442\u043e\u0440\u043e\u0439 \u0441\u043b\u0435\u0434\u0443\u0435\u0442 \u043d\u0430\u0447\u0430\u0442\u044c. \u0412 \u0442\u0430\u043a\u043e\u043c \u0441\u043b\u0443\u0447\u0430\u0435, \u0432\u0430\u043c \u043d\u0443\u0436\u043d\u043e \u0431\u0443\u0434\u0435\u0442 \u0432\u0441\u043b\u0443\u0445 \u043d\u0430\u0437\u044b\u0432\u0430\u0442\u044c \u043f\u043e\u0441\u043b\u0435\u0434\u043e\u0432\u0430\u0442\u0435\u043b\u044c\u043d\u043e\u0441\u0442\u044c \u0446\u0438\u0444\u0440. \u041d\u0430\u043f\u0440\u0438\u043c\u0435\u0440, \u0441\u0447\u0451\u0442 \u0442\u0440\u043e\u0439\u043a\u0430\u043c\u0438 \u043e\u0442 1 \u0431\u0443\u0434\u0435\u0442 \u0432\u044b\u0433\u043b\u044f\u0434\u0435\u0442\u044c \u0442\u0430\u043a: 1, 4, 7, 10, 13, 16, 19...',
-    font='Arial',
-    pos=(0, 0.4), height=0.1, wrapWidth=1.5, ori=0, 
-    color='white', colorSpace='rgb', opacity=1,
-    depth=0.0);
+counting_training_part_1 = visual.ImageStim(
+    win=win, name='counting_training_part_1',
+    image=u'Images\\counting_training_part_1.png', mask=None,
+    ori=0, pos=(0, 0.3), size=None,
+    color=[1.000,1.000,1.000], colorSpace='rgb', opacity=1,
+    flipHoriz=False, flipVert=False,
+    texRes=128, interpolate=True, depth=0.0)
 
 counting_training_part_2 = visual.TextStim(win=win, name='counting_training_part_2',
     text='default text',
-    font='Arial',
-    pos=(0, -0.2), height=0.1, wrapWidth=1.5, ori=0, 
-    color='white', colorSpace='rgb', opacity=1,
+    font=u'Arial',
+    pos=(0, -0.4), height=0.1, wrapWidth=1.5, ori=0, 
+    color=u'white', colorSpace='rgb', opacity=1,
     depth=-2.0);
 
 # Initialize components for Routine "practice"
@@ -93,7 +93,7 @@ practiceClock = core.Clock()
 neutral_images = [u'Images\\neutral_1.jpg', u'Images\\neutral_2.jpg']
 shuffle(neutral_images)
 practice_text = visual.TextStim(win=win, name='practice_text',
-    text=u'\u041d\u0430\u0436\u043c\u0438\u0442\u0435 \u043f\u0440\u043e\u0431\u0435\u043b',
+    text=u'\u0420\u0435\u0448\u0438\u0432 \u0437\u0430\u0434\u0430\u0447\u0443, \u043d\u0430\u0436\u043c\u0438\u0442\u0435 \u043f\u0440\u043e\u0431\u0435\u043b 2 \u0440\u0430\u0437\u0430\nIII+III=IV\n\u0421\u0435\u0439\u0447\u0430\u0441  \u0412\u0430\u043c \u0431\u0443\u0434\u0435\u0442 \u043f\u0440\u0435\u0434\u043b\u043e\u0436\u0435\u043d\u0430 \u0437\u0430\u0434\u0430\u0447\u0430 (\u0432 \u0445\u043e\u0434\u0435 \u0440\u0435\u0448\u0435\u043d\u0438\u044f \u043d\u0430\u0434\u043e \u043d\u0430\u0436\u0430\u0442\u044c \u043d\u0430 \u043f\u0440\u043e\u0431\u0435\u043b 2 \u0440\u0430\u0437\u0430 \n\u0441 \u043f\u0440\u043e\u0438\u0437\u0432\u043e\u043b\u044c\u043d\u044b\u043c \u0438\u043d\u0442\u0435\u0440\u0432\u0430\u043b\u043e\u043c - \u044d\u0442\u043e \u043d\u0443\u0436\u043d\u043e \u0434\u043b\u044f \u043e\u0442\u043b\u0430\u0434\u043a\u0438 \u0441\u043a\u0440\u0438\u043f\u0442\u0430)',
     font='Arial',
     pos=(0, 0.4), height=0.1, wrapWidth=None, ori=0, 
     color='white', colorSpace='rgb', opacity=1,
@@ -105,6 +105,15 @@ practice_neutral = visual.ImageStim(
     color=[1,1,1], colorSpace='rgb', opacity=1,
     flipHoriz=False, flipVert=False,
     texRes=128, interpolate=True, depth=-3.0)
+
+# Initialize components for Routine "instruction_problem"
+instruction_problemClock = core.Clock()
+instruction_problem_text = visual.TextStim(win=win, name='instruction_problem_text',
+    text=u'\u0414\u043b\u044f \u0440\u0435\u0448\u0435\u043d\u0438\u044f \u0437\u0430\u0434\u0430\u0447, \n\u043f\u0435\u0440\u0435\u043c\u0435\u0441\u0442\u0438\u0442\u0435 \u043e\u0434\u043d\u0443 \u043f\u0430\u043b\u043e\u0447\u043a\u0443 \n\u0442\u0430\u043a, \u0447\u0442\u043e\u0431\u044b \u0440\u0430\u0432\u0435\u043d\u0441\u0442\u0432\u043e \u0441\u0442\u0430\u043b\u043e\n \u0432\u0435\u0440\u043d\u044b\u043c.\n',
+    font='Arial',
+    pos=(0, 0), height=0.1, wrapWidth=None, ori=0, 
+    color='white', colorSpace='rgb', opacity=1,
+    depth=0.0);
 
 # Initialize components for Routine "main_event"
 main_eventClock = core.Clock()
@@ -138,33 +147,32 @@ impacts = visual.ImageStim(
 finishClock = core.Clock()
 Finale = visual.TextStim(win=win, name='Finale',
     text=u'\u0421\u043f\u0430\u0441\u0438\u0431\u043e \u0437\u0430 \u0443\u0447\u0430\u0441\u0442\u0438\u0435',
-    font=u'Arial',
+    font='Arial',
     pos=(0, 0), height=0.1, wrapWidth=None, ori=0, 
-    color=u'white', colorSpace='rgb', opacity=1,
+    color='white', colorSpace='rgb', opacity=1,
     depth=0.0);
 
 # Create some handy timers
 globalClock = core.Clock()  # to track the time since experiment started
 routineTimer = core.CountdownTimer()  # to track time remaining of each (non-slip) routine 
 
-# ------Prepare to start Routine "instruction"-------
+# ------Prepare to start Routine "instruction_overall"-------
 t = 0
-instructionClock.reset()  # clock
+instruction_overallClock.reset()  # clock
 frameN = -1
 continueRoutine = True
 # update component parameters for each repeat
 instruction_end = event.BuilderKeyResponse()
-
 # keep track of which components have finished
-instructionComponents = [instruction_text, instruction_end]
-for thisComponent in instructionComponents:
+instruction_overallComponents = [instruction_text, instruction_end]
+for thisComponent in instruction_overallComponents:
     if hasattr(thisComponent, 'status'):
         thisComponent.status = NOT_STARTED
 
-# -------Start Routine "instruction"-------
+# -------Start Routine "instruction_overall"-------
 while continueRoutine:
     # get current time
-    t = instructionClock.getTime()
+    t = instruction_overallClock.getTime()
     frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
     # update/draw components on each frame
     
@@ -196,12 +204,11 @@ while continueRoutine:
             # a response ends the routine
             continueRoutine = False
     
-    
     # check if all components have finished
     if not continueRoutine:  # a component has requested a forced-end of Routine
         break
     continueRoutine = False  # will revert to True if at least one component still running
-    for thisComponent in instructionComponents:
+    for thisComponent in instruction_overallComponents:
         if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
             continueRoutine = True
             break  # at least one component has not yet finished
@@ -214,8 +221,8 @@ while continueRoutine:
     if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
         win.flip()
 
-# -------Ending Routine "instruction"-------
-for thisComponent in instructionComponents:
+# -------Ending Routine "instruction_overall"-------
+for thisComponent in instruction_overallComponents:
     if hasattr(thisComponent, "setAutoDraw"):
         thisComponent.setAutoDraw(False)
 # check responses
@@ -225,8 +232,7 @@ thisExp.addData('instruction_end.keys',instruction_end.keys)
 if instruction_end.keys != None:  # we had a response
     thisExp.addData('instruction_end.rt', instruction_end.rt)
 thisExp.nextEntry()
-
-# the Routine "instruction" was not non-slip safe, so reset the non-slip timer
+# the Routine "instruction_overall" was not non-slip safe, so reset the non-slip timer
 routineTimer.reset()
 
 # ------Prepare to start Routine "counting"-------
@@ -436,6 +442,85 @@ for thisPractice_loop in practice_loop:
     
 # completed 3 repeats of 'practice_loop'
 
+
+# ------Prepare to start Routine "instruction_problem"-------
+t = 0
+instruction_problemClock.reset()  # clock
+frameN = -1
+continueRoutine = True
+# update component parameters for each repeat
+instruction_problem_keyb = event.BuilderKeyResponse()
+# keep track of which components have finished
+instruction_problemComponents = [instruction_problem_text, instruction_problem_keyb]
+for thisComponent in instruction_problemComponents:
+    if hasattr(thisComponent, 'status'):
+        thisComponent.status = NOT_STARTED
+
+# -------Start Routine "instruction_problem"-------
+while continueRoutine:
+    # get current time
+    t = instruction_problemClock.getTime()
+    frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
+    # update/draw components on each frame
+    
+    # *instruction_problem_text* updates
+    if t >= 0.0 and instruction_problem_text.status == NOT_STARTED:
+        # keep track of start time/frame for later
+        instruction_problem_text.tStart = t
+        instruction_problem_text.frameNStart = frameN  # exact frame index
+        instruction_problem_text.setAutoDraw(True)
+    
+    # *instruction_problem_keyb* updates
+    if t >= 0.0 and instruction_problem_keyb.status == NOT_STARTED:
+        # keep track of start time/frame for later
+        instruction_problem_keyb.tStart = t
+        instruction_problem_keyb.frameNStart = frameN  # exact frame index
+        instruction_problem_keyb.status = STARTED
+        # keyboard checking is just starting
+        win.callOnFlip(instruction_problem_keyb.clock.reset)  # t=0 on next screen flip
+        event.clearEvents(eventType='keyboard')
+    if instruction_problem_keyb.status == STARTED:
+        theseKeys = event.getKeys(keyList=['space'])
+        
+        # check for quit:
+        if "escape" in theseKeys:
+            endExpNow = True
+        if len(theseKeys) > 0:  # at least one key was pressed
+            instruction_problem_keyb.keys = theseKeys[-1]  # just the last key pressed
+            instruction_problem_keyb.rt = instruction_problem_keyb.clock.getTime()
+            # a response ends the routine
+            continueRoutine = False
+    
+    # check if all components have finished
+    if not continueRoutine:  # a component has requested a forced-end of Routine
+        break
+    continueRoutine = False  # will revert to True if at least one component still running
+    for thisComponent in instruction_problemComponents:
+        if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
+            continueRoutine = True
+            break  # at least one component has not yet finished
+    
+    # check for quit (the Esc key)
+    if endExpNow or event.getKeys(keyList=["escape"]):
+        core.quit()
+    
+    # refresh the screen
+    if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
+        win.flip()
+
+# -------Ending Routine "instruction_problem"-------
+for thisComponent in instruction_problemComponents:
+    if hasattr(thisComponent, "setAutoDraw"):
+        thisComponent.setAutoDraw(False)
+# check responses
+if instruction_problem_keyb.keys in ['', [], None]:  # No response was made
+    instruction_problem_keyb.keys=None
+thisExp.addData('instruction_problem_keyb.keys',instruction_problem_keyb.keys)
+if instruction_problem_keyb.keys != None:  # we had a response
+    thisExp.addData('instruction_problem_keyb.rt', instruction_problem_keyb.rt)
+thisExp.nextEntry()
+# the Routine "instruction_problem" was not non-slip safe, so reset the non-slip timer
+routineTimer.reset()
 
 # set up handler to look after randomisation of conditions etc
 problems = data.TrialHandler(nReps=1, method='random', 
@@ -686,7 +771,6 @@ while continueRoutine and routineTimer.getTime() > 0:
 for thisComponent in finishComponents:
     if hasattr(thisComponent, "setAutoDraw"):
         thisComponent.setAutoDraw(False)
-
 
 
 
