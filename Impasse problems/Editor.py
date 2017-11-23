@@ -17,15 +17,37 @@ var_del_lines = 0
 var_del_filses = 0
 
 changes = {'                                STOPPED, FINISHED, PRESSED, RELEASED, FOREVER)\n':
-                                        ['from random import sample, randint, choice, shuffle',
+                                        [
+                                           'from random import sample, randint, choice, shuffle',
                                          ],
+                    'os.chdir(_thisDir)\n':
+                                         [
+                                          "sys.path.append(_thisDir + '\\tweaks')",
+                                          "sys.path.append(os.path.join(_thisDir, os.listdir(_thisDir)[-2]))",
+                                          "import statistic",
+                                          ],
 
-        'thisProblem = problems.trialList[0]  # so we can initialise stimuli with some values\n':
-                                        ["prepand_type = choice((1,0))",
-                                          "for num, cond in enumerate(problems.trialList):",
-                                          "    cond['delay'] = delay_time[num]",
-                                          "    cond['type'] = prepand_type#1 - hint, 0 - distraction"
-                                         ],            
+                    'thisProblem = problems.trialList[0]  # so we can initialise stimuli with some values\n':
+                                         [
+                                          "statistic.look_up(os.path.join(_thisDir, 'Overall_statistics\\groups.txt'))",
+                                          "prepand_type = {'Hint': 1, 'Distractor': 0}",
+                                          "for condition, value in statistic.changes_to_do.items():",
+                                          "    if value == '17':",
+                                          "        del prepand_type[condition]",
+                                          "        prepand_type = prepand_type.popitem()[1]",
+                                          "        break",
+                                          "else:",
+                                          "    prepand_type = choice( prepand_type.values() )",
+                                           "for num, cond in enumerate(problems.trialList):",
+                                           "    cond['delay'] = delay_time[num]",
+                                           "    cond['type'] = prepand_type#1 - hint, 0 - distraction",
+                                          ],
+                   "# these shouldn't be strictly necessary (should auto-save)\n":
+                                          [
+                                           "Decipher = {1: 'Hint', 0: 'Distractor'}",
+                                           "prepand_type = Decipher[prepand_type]",
+                                           "statistic.save_down(os.path.join(_thisDir, 'Overall_statistics\\groups.txt'), prepand_type)",
+                                          ]
                    }
 
 for key,value in changes.items(): #добавим окончание строки \n

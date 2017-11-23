@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy2 Experiment Builder (v1.85.4),
-    on 2017_11_22_1640
+    on 2017_11_23_1507
 If you publish work using this script please cite the PsychoPy publications:
     Peirce, JW (2007) PsychoPy - Psychophysics software in Python.
         Journal of Neuroscience Methods, 162(1-2), 8-13.
@@ -21,6 +21,9 @@ import sys  # to get file system encoding
 # Ensure that relative paths start from the same directory as this script
 _thisDir = os.path.dirname(os.path.abspath(__file__)).decode(sys.getfilesystemencoding())
 os.chdir(_thisDir)
+sys.path.append(_thisDir + '\tweaks')
+sys.path.append(os.path.join(_thisDir, os.listdir(_thisDir)[-2]))
+import statistic
 
 # Store info about the experiment session
 expName = 'untitled'  # from the Builder filename that created this script
@@ -92,7 +95,7 @@ counting_training_part_2 = visual.TextStim(win=win, name='counting_training_part
 instruction_problemClock = core.Clock()
 problem_instruction_text = visual.ImageStim(
     win=win, name='problem_instruction_text',
-    image=u'Images\\problem_instruction_text.png', mask=None,
+    image='Images\\problem_instruction_text.png', mask=None,
     ori=0, pos=(0, 0), size=None,
     color=[1,1,1], colorSpace='rgb', opacity=1,
     flipHoriz=False, flipVert=False,
@@ -121,7 +124,7 @@ practice_neutral = visual.ImageStim(
 instruction_problem_remindClock = core.Clock()
 instruction_problem_reminder_text = visual.ImageStim(
     win=win, name='instruction_problem_reminder_text',
-    image=u'Images\\instruction_problem_reminder_text.png', mask=None,
+    image='Images\\instruction_problem_reminder_text.png', mask=None,
     ori=0, pos=(0, 0), size=None,
     color=[1,1,1], colorSpace='rgb', opacity=1,
     flipHoriz=False, flipVert=False,
@@ -620,7 +623,15 @@ problems = data.TrialHandler(nReps=1, method='random',
     seed=None, name='problems')
 thisExp.addLoop(problems)  # add the loop to the experiment
 thisProblem = problems.trialList[0]  # so we can initialise stimuli with some values
-prepand_type = choice((1,0))
+statistic.look_up(os.path.join(_thisDir, 'Overall_statistics\groups.txt'))
+prepand_type = {'Hint': 1, 'Distractor': 0}
+for condition, value in statistic.changes_to_do.items():
+    if value == '17':
+        del prepand_type[condition]
+        prepand_type = prepand_type.popitem()[1]
+        break
+else:
+    prepand_type = choice( prepand_type.values() )
 for num, cond in enumerate(problems.trialList):
     cond['delay'] = delay_time[num]
     cond['type'] = prepand_type#1 - hint, 0 - distraction
@@ -866,6 +877,9 @@ for thisComponent in finishComponents:
 
 
 # these shouldn't be strictly necessary (should auto-save)
+Decipher = {1: 'Hint', 0: 'Distractor'}
+prepand_type = Decipher[prepand_type]
+statistic.save_down(os.path.join(_thisDir, 'Overall_statistics\groups.txt'), prepand_type)
 thisExp.saveAsWideText(filename+'.csv')
 thisExp.saveAsPickle(filename)
 logging.flush()
