@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy2 Experiment Builder (v1.85.4),
-    on 2017_11_23_1507
+    on 2018_01_13_0013
 If you publish work using this script please cite the PsychoPy publications:
     Peirce, JW (2007) PsychoPy - Psychophysics software in Python.
         Journal of Neuroscience Methods, 162(1-2), 8-13.
@@ -26,8 +26,8 @@ sys.path.append(os.path.join(_thisDir, os.listdir(_thisDir)[-2]))
 import statistic
 
 # Store info about the experiment session
-expName = 'untitled'  # from the Builder filename that created this script
-expInfo = {u'participant': u''}
+expName = u'untitled'  # from the Builder filename that created this script
+expInfo = {u'participant': u'', u'experimentator': u'Makarov'}
 dlg = gui.DlgFromDict(dictionary=expInfo, title=expName)
 if dlg.OK == False:
     core.quit()  # user pressed cancel
@@ -55,7 +55,7 @@ endExpNow = False  # flag for 'escape' or other condition => quit the exp
 win = visual.Window(
     size=(1680, 1050), fullscr=True, screen=0,
     allowGUI=False, allowStencil=False,
-    monitor='testMonitor', color=[0,0,0], colorSpace='rgb',
+    monitor=u'testMonitor', color=[0,0,0], colorSpace='rgb',
     blendMode='avg', useFBO=True)
 # store frame rate of monitor if we can measure it
 expInfo['frameRate'] = win.getActualFrameRate()
@@ -157,6 +157,13 @@ impacts = visual.ImageStim(
     color='red', colorSpace='rgb', opacity=0,
     flipHoriz=False, flipVert=False,
     texRes=128, interpolate=True, depth=-3.0)
+impcts_control_group = visual.ImageStim(
+    win=win, name='impcts_control_group',
+    image='Images\\Control_group_neutral.jpg', mask=None,
+    ori=0, pos=(0, -0.5), size=(0.4,0.4),
+    color=[1,1,1], colorSpace='rgb', opacity=1,
+    flipHoriz=False, flipVert=False,
+    texRes=128, interpolate=True, depth=-6.0)
 
 # Initialize components for Routine "finish"
 finishClock = core.Clock()
@@ -624,17 +631,23 @@ problems = data.TrialHandler(nReps=1, method='random',
 thisExp.addLoop(problems)  # add the loop to the experiment
 thisProblem = problems.trialList[0]  # so we can initialise stimuli with some values
 statistic.look_up(os.path.join(_thisDir, 'Overall_statistics\groups.txt'))
-prepand_type = {'Hint': 1, 'Distractor': 0}
+prepand_type = {'Hint': 1, 'Distractor': 0, 'Control': 2}
+cond_to_delete = list(statistic.changes_to_do.values()).count('20')
+cond_was_del = 0
 for condition, value in statistic.changes_to_do.items():
-    if value == '17':
+     if cond_to_delete == 2 and value == '20':
+          del prepand_type[condition]
+          cond_was_del += 1
+          if cond_was_del == 2:
+               prepand_type = prepand_type.popitem()[1]
+               break
+    elif value == '20':
         del prepand_type[condition]
-        prepand_type = prepand_type.popitem()[1]
-        break
 else:
     prepand_type = choice( prepand_type.values() )
 for num, cond in enumerate(problems.trialList):
     cond['delay'] = delay_time[num]
-    cond['type'] = prepand_type#1 - hint, 0 - distraction
+    cond['type'] = prepand_type #1 - hint, 0 - distraction, 2 - control
 # abbreviate parameter names if possible (e.g. rgb = thisProblem.rgb)
 if thisProblem != None:
     for paramName in thisProblem.keys():
@@ -681,7 +694,7 @@ for thisProblem in problems:
         problem_control_impass = event.BuilderKeyResponse()
         problem_control_exit = event.BuilderKeyResponse()
         # keep track of which components have finished
-        main_eventComponents = [impacts_distr, this_problem, impacts, problem_control_impass, problem_control_exit]
+        main_eventComponents = [impacts_distr, this_problem, impacts, problem_control_impass, problem_control_exit, impcts_control_group]
         for thisComponent in main_eventComponents:
             if hasattr(thisComponent, 'status'):
                 thisComponent.status = NOT_STARTED
@@ -702,12 +715,12 @@ for thisProblem in problems:
                 ready_to_shine = 0
             
             # *impacts_distr* updates
-            if (all((blink_time <= t <= time_to_stop,ready_to_shine == 1,type == 0))) and impacts_distr.status == NOT_STARTED:
+            if (all((blink_time <= t <= time_to_stop,ready_to_shine == 1, type == 0))) and impacts_distr.status == NOT_STARTED:
                 # keep track of start time/frame for later
                 impacts_distr.tStart = t
                 impacts_distr.frameNStart = frameN  # exact frame index
                 impacts_distr.setAutoDraw(True)
-            if impacts_distr.status == STARTED and bool(ready_to_shine ==0):
+            if impacts_distr.status == STARTED and bool(ready_to_shine == 0):
                 impacts_distr.setAutoDraw(False)
             
             # *this_problem* updates
@@ -766,6 +779,15 @@ for thisProblem in problems:
                     problem_control_exit.rt = problem_control_exit.clock.getTime()
                     # a response ends the routine
                     continueRoutine = False
+            
+            # *impcts_control_group* updates
+            if (all((blink_time <= t <= time_to_stop,ready_to_shine == 1, type == 2))) and impcts_control_group.status == NOT_STARTED:
+                # keep track of start time/frame for later
+                impcts_control_group.tStart = t
+                impcts_control_group.frameNStart = frameN  # exact frame index
+                impcts_control_group.setAutoDraw(True)
+            if impcts_control_group.status == STARTED and bool(ready_to_shine == 0):
+                impcts_control_group.setAutoDraw(False)
             
             # check if all components have finished
             if not continueRoutine:  # a component has requested a forced-end of Routine
@@ -877,7 +899,7 @@ for thisComponent in finishComponents:
 
 
 # these shouldn't be strictly necessary (should auto-save)
-Decipher = {1: 'Hint', 0: 'Distractor'}
+Decipher = {1: 'Hint', 0: 'Distractor', 2: 'Control'}
 prepand_type = Decipher[prepand_type]
 statistic.save_down(os.path.join(_thisDir, 'Overall_statistics\groups.txt'), prepand_type)
 thisExp.saveAsWideText(filename+'.csv')

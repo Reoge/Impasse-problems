@@ -4,7 +4,7 @@
     <Param name="Monitor" updates="None" val="testMonitor" valType="str"/>
     <Param name="color" updates="None" val="$[0,0,0]" valType="str"/>
     <Param name="colorSpace" updates="None" val="rgb" valType="str"/>
-    <Param name="Experiment info" updates="None" val="{u'participant': u''}" valType="code"/>
+    <Param name="Experiment info" updates="None" val="{u'participant': u'', u'experimentator': u'Makarov'}" valType="code"/>
     <Param name="JS libs" updates="None" val="packaged" valType="str"/>
     <Param name="Units" updates="None" val="use prefs" valType="str"/>
     <Param name="Save excel file" updates="None" val="False" valType="bool"/>
@@ -135,7 +135,7 @@
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
         <Param name="color" updates="constant" val="white" valType="str"/>
         <Param name="text" updates="set every repeat" val="$distraction" valType="str"/>
-        <Param name="stopVal" updates="constant" val="ready_to_shine ==0" valType="code"/>
+        <Param name="stopVal" updates="constant" val="ready_to_shine == 0" valType="code"/>
         <Param name="durationEstim" updates="None" val="" valType="code"/>
         <Param name="pos" updates="constant" val="(0, -0.5)" valType="code"/>
         <Param name="flip" updates="constant" val="" valType="str"/>
@@ -144,7 +144,7 @@
         <Param name="startType" updates="None" val="condition" valType="str"/>
         <Param name="ori" updates="constant" val="0" valType="code"/>
         <Param name="stopType" updates="None" val="condition" valType="str"/>
-        <Param name="startVal" updates="None" val="all((blink_time &lt;= t &lt;= time_to_stop,ready_to_shine == 1,type == 0))" valType="code"/>
+        <Param name="startVal" updates="None" val="all((blink_time &lt;= t &lt;= time_to_stop,ready_to_shine == 1, type == 0))" valType="code"/>
         <Param name="font" updates="constant" val="Arial" valType="str"/>
         <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
       </TextComponent>
@@ -224,6 +224,28 @@
         <Param name="store" updates="constant" val="last key" valType="str"/>
         <Param name="syncScreenRefresh" updates="constant" val="True" valType="bool"/>
       </KeyboardComponent>
+      <ImageComponent name="impcts_control_group">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="flipVert" updates="constant" val="False" valType="bool"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="impcts_control_group" valType="code"/>
+        <Param name="color" updates="constant" val="$[1,1,1]" valType="str"/>
+        <Param name="stopVal" updates="constant" val="ready_to_shine == 0" valType="code"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="mask" updates="constant" val="None" valType="str"/>
+        <Param name="pos" updates="constant" val="(0, -0.5)" valType="code"/>
+        <Param name="interpolate" updates="constant" val="linear" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="texture resolution" updates="constant" val="128" valType="code"/>
+        <Param name="startType" updates="None" val="condition" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="condition" valType="str"/>
+        <Param name="startVal" updates="None" val="all((blink_time &lt;= t &lt;= time_to_stop,ready_to_shine == 1, type == 2))" valType="code"/>
+        <Param name="flipHoriz" updates="constant" val="False" valType="bool"/>
+        <Param name="image" updates="constant" val="Images\Control_group_neutral.jpg" valType="str"/>
+        <Param name="size" updates="constant" val="(0.4,0.4)" valType="code"/>
+      </ImageComponent>
     </Routine>
     <Routine name="instruction_overall">
       <ImageComponent name="instruction_text">
