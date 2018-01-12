@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy2 Experiment Builder (v1.85.4),
-    on 2018_01_13_0013
+    on 2018_01_13_0026
 If you publish work using this script please cite the PsychoPy publications:
     Peirce, JW (2007) PsychoPy - Psychophysics software in Python.
         Journal of Neuroscience Methods, 162(1-2), 8-13.
@@ -26,7 +26,7 @@ sys.path.append(os.path.join(_thisDir, os.listdir(_thisDir)[-2]))
 import statistic
 
 # Store info about the experiment session
-expName = u'untitled'  # from the Builder filename that created this script
+expName = 'untitled'  # from the Builder filename that created this script
 expInfo = {u'participant': u'', u'experimentator': u'Makarov'}
 dlg = gui.DlgFromDict(dictionary=expInfo, title=expName)
 if dlg.OK == False:
@@ -55,7 +55,7 @@ endExpNow = False  # flag for 'escape' or other condition => quit the exp
 win = visual.Window(
     size=(1680, 1050), fullscr=True, screen=0,
     allowGUI=False, allowStencil=False,
-    monitor=u'testMonitor', color=[0,0,0], colorSpace='rgb',
+    monitor='testMonitor', color=[0,0,0], colorSpace='rgb',
     blendMode='avg', useFBO=True)
 # store frame rate of monitor if we can measure it
 expInfo['frameRate'] = win.getActualFrameRate()
@@ -632,10 +632,10 @@ thisExp.addLoop(problems)  # add the loop to the experiment
 thisProblem = problems.trialList[0]  # so we can initialise stimuli with some values
 statistic.look_up(os.path.join(_thisDir, 'Overall_statistics\groups.txt'))
 prepand_type = {'Hint': 1, 'Distractor': 0, 'Control': 2}
-cond_to_delete = list(statistic.changes_to_do.values()).count('20')
+cond_to_delete = list(statistic.changes_to_do.values()).count('10')
 cond_was_del = 0
 for condition, value in statistic.changes_to_do.items():
-     if cond_to_delete == 2 and value == '20':
+     if cond_to_delete == 2 and value == '10':
           del prepand_type[condition]
           cond_was_del += 1
           if cond_was_del == 2:
