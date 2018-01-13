@@ -34,7 +34,7 @@ changes = {'                                STOPPED, FINISHED, PRESSED, RELEASED
                                           "cond_to_delete = list(statistic.changes_to_do.values()).count('10')",
                                           "cond_was_del = 0",
                                           "for condition, value in statistic.changes_to_do.items():",
-                                          "     if cond_to_delete == 2 and value == '10':",
+                                          "    if cond_to_delete == 2 and value == '10':",
                                           "          del prepand_type[condition]",
                                           "          cond_was_del += 1",
                                           "          if cond_was_del == 2:",
