@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy2 Experiment Builder (v1.85.4),
-    on 2018_01_13_1302
+    on 2018_01_13_1326
 If you publish work using this script please cite the PsychoPy publications:
     Peirce, JW (2007) PsychoPy - Psychophysics software in Python.
         Journal of Neuroscience Methods, 162(1-2), 8-13.
@@ -633,6 +633,9 @@ thisProblem = problems.trialList[0]  # so we can initialise stimuli with some va
 statistic.look_up(os.path.join(_thisDir, 'Overall_statistics\groups.txt'))
 prepand_type = {'Hint': 1, 'Distractor': 0, 'Control': 2}
 cond_to_delete = list(statistic.changes_to_do.values()).count('10')
+if cond_to_delete == 3:
+     print '='*27, '\nAll subjects were gathered!\n', '='*27
+     core.quit()
 cond_was_del = 0
 for condition, value in statistic.changes_to_do.items():
     if cond_to_delete == 2 and value == '10':
