@@ -246,6 +246,26 @@
         <Param name="image" updates="constant" val="Images\Control_group_neutral.jpg" valType="str"/>
         <Param name="size" updates="constant" val="(0.4,0.4)" valType="code"/>
       </ImageComponent>
+      <TextComponent name="game_over">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="game_over" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="red" valType="str"/>
+        <Param name="text" updates="constant" val="Время вышло" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="pos" updates="constant" val="(0, 0.5)" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="condition" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="t2 &lt; 0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.25" valType="code"/>
+      </TextComponent>
     </Routine>
     <Routine name="instruction_overall">
       <ImageComponent name="instruction_text">

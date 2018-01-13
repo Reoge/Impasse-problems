@@ -61,6 +61,14 @@ changes = {'                                STOPPED, FINISHED, PRESSED, RELEASED
                                           "        if prepand_type == 1:",
                                           "            impacts.setImage(impact)",
                                           ],
+                   "main_eventClock = core.Clock()\n":
+                                          [
+                                          "main_eventTimer = core.CountdownTimer(start=300)",
+                                          ],
+                   "            t = main_eventClock.getTime()\n":
+                                          [
+                                          "            t2 = main_eventTimer.getTime()",
+                                          ],
                    "# these shouldn't be strictly necessary (should auto-save)\n":
                                           [
                                            "Decipher = {1: 'Hint', 0: 'Distractor', 2: 'Control'}",
@@ -103,9 +111,8 @@ with fileinput.FileInput('Final.py', inplace = True) as f:
             var_del_lines += 1
         print(line, end = '')
 
-while q_delets_f !=0:
+for file_to_delete in delete_files:
         try:
-                file_to_delete = delete_files.pop()
                 remove(file_to_delete)
                 var_del_filses += 1
         except FileNotFoundError:
