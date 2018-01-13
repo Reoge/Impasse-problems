@@ -43,20 +43,30 @@ changes = {'                                STOPPED, FINISHED, PRESSED, RELEASED
                                           "          if cond_was_del == 2:",
                                           "               prepand_type = prepand_type.popitem()[1]",
                                           "               break",
-                                          "    elif value == '20':",
+                                          "    elif value == '10':",
                                           "        del prepand_type[condition]",
                                           "else:",
                                           "    prepand_type = choice( prepand_type.values() )",
-                                           "for num, cond in enumerate(problems.trialList):",
-                                           "    cond['delay'] = delay_time[num]",
-                                           "    cond['type'] = prepand_type #1 - hint, 0 - distraction, 2 - control",
+                                          "for num, cond in enumerate(problems.trialList):",
+                                          "    cond['delay'] = delay_time[num]",
+                                          "    cond['type'] = prepand_type #1 - hint, 0 - distraction, 2 - control",
+                                          "if prepand_type != 1:",
+                                          "    cond_variants = ('distraction', None, 'control')",
+                                          "    for cond_list in problems.trialList:",
+                                          "        cond_list['impact'] = cond_variants[prepand_type]",
+                                          ],
+                   "        this_problem.setImage(problem)\n":
+                                          [
+                                          "        impacts.setImage(None)",
+                                          "        if prepand_type == 1:",
+                                          "            impacts.setImage(impact)",
                                           ],
                    "# these shouldn't be strictly necessary (should auto-save)\n":
                                           [
                                            "Decipher = {1: 'Hint', 0: 'Distractor', 2: 'Control'}",
                                            "prepand_type = Decipher[prepand_type]",
                                            "statistic.save_down(os.path.join(_thisDir, 'Overall_statistics\\groups.txt'), prepand_type)",
-                                          ]
+                                          ],
                    }
 
 for key,value in changes.items(): #добавим окончание строки \n
@@ -72,6 +82,7 @@ delete_lines = [
                 "from numpy import (sin, cos, tan, log, log10, pi, average,",
                 "                   sqrt, std, deg2rad, rad2deg, linspace, asarray)",
                 "from numpy.random import random, randint, normal, shuffle",
+                "        impacts.setImage(impact)",
                          ]
 delete_lines = [line+'\n' for line in delete_lines]
 

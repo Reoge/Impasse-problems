@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy2 Experiment Builder (v1.85.4),
-    on 2018_01_13_1326
+    on 2018_01_13_1527
 If you publish work using this script please cite the PsychoPy publications:
     Peirce, JW (2007) PsychoPy - Psychophysics software in Python.
         Journal of Neuroscience Methods, 162(1-2), 8-13.
@@ -157,9 +157,9 @@ impacts = visual.ImageStim(
     color='red', colorSpace='rgb', opacity=0,
     flipHoriz=False, flipVert=False,
     texRes=128, interpolate=True, depth=-3.0)
-impcts_control_group = visual.ImageStim(
-    win=win, name='impcts_control_group',
-    image='Images\\Control_group_neutral.jpg', mask=None,
+impacts_control_group = visual.ImageStim(
+    win=win, name='impacts_control_group',
+    image=u'Images\\Control_group_neutral.jpg', mask=None,
     ori=0, pos=(0, -0.5), size=(0.4,0.4),
     color=[1,1,1], colorSpace='rgb', opacity=1,
     flipHoriz=False, flipVert=False,
@@ -644,13 +644,17 @@ for condition, value in statistic.changes_to_do.items():
           if cond_was_del == 2:
                prepand_type = prepand_type.popitem()[1]
                break
-    elif value == '20':
+    elif value == '10':
         del prepand_type[condition]
 else:
     prepand_type = choice( prepand_type.values() )
 for num, cond in enumerate(problems.trialList):
     cond['delay'] = delay_time[num]
     cond['type'] = prepand_type #1 - hint, 0 - distraction, 2 - control
+if prepand_type != 1:
+    cond_variants = ('distraction', None, 'control')
+    for cond_list in problems.trialList:
+        cond_list['impact'] = cond_variants[prepand_type]
 # abbreviate parameter names if possible (e.g. rgb = thisProblem.rgb)
 if thisProblem != None:
     for paramName in thisProblem.keys():
@@ -693,11 +697,13 @@ for thisProblem in problems:
         distraction = u'Начинайте считать от %d' % randint(1,10)
         impacts_distr.setText(distraction)
         this_problem.setImage(problem)
-        impacts.setImage(impact)
+        impacts.setImage(None)
+        if prepand_type == 1:
+            impacts.setImage(impact)
         problem_control_impass = event.BuilderKeyResponse()
         problem_control_exit = event.BuilderKeyResponse()
         # keep track of which components have finished
-        main_eventComponents = [impacts_distr, this_problem, impacts, problem_control_impass, problem_control_exit, impcts_control_group]
+        main_eventComponents = [impacts_distr, this_problem, impacts, problem_control_impass, problem_control_exit, impacts_control_group]
         for thisComponent in main_eventComponents:
             if hasattr(thisComponent, 'status'):
                 thisComponent.status = NOT_STARTED
@@ -783,14 +789,14 @@ for thisProblem in problems:
                     # a response ends the routine
                     continueRoutine = False
             
-            # *impcts_control_group* updates
-            if (all((blink_time <= t <= time_to_stop,ready_to_shine == 1, type == 2))) and impcts_control_group.status == NOT_STARTED:
+            # *impacts_control_group* updates
+            if (all((blink_time <= t <= time_to_stop,ready_to_shine == 1, type == 2))) and impacts_control_group.status == NOT_STARTED:
                 # keep track of start time/frame for later
-                impcts_control_group.tStart = t
-                impcts_control_group.frameNStart = frameN  # exact frame index
-                impcts_control_group.setAutoDraw(True)
-            if impcts_control_group.status == STARTED and bool(ready_to_shine == 0):
-                impcts_control_group.setAutoDraw(False)
+                impacts_control_group.tStart = t
+                impacts_control_group.frameNStart = frameN  # exact frame index
+                impacts_control_group.setAutoDraw(True)
+            if impacts_control_group.status == STARTED and bool(ready_to_shine == 0):
+                impacts_control_group.setAutoDraw(False)
             
             # check if all components have finished
             if not continueRoutine:  # a component has requested a forced-end of Routine

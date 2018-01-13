@@ -224,11 +224,11 @@
         <Param name="store" updates="constant" val="last key" valType="str"/>
         <Param name="syncScreenRefresh" updates="constant" val="True" valType="bool"/>
       </KeyboardComponent>
-      <ImageComponent name="impcts_control_group">
+      <ImageComponent name="impacts_control_group">
         <Param name="opacity" updates="constant" val="1" valType="code"/>
         <Param name="flipVert" updates="constant" val="False" valType="bool"/>
         <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
-        <Param name="name" updates="None" val="impcts_control_group" valType="code"/>
+        <Param name="name" updates="None" val="impacts_control_group" valType="code"/>
         <Param name="color" updates="constant" val="$[1,1,1]" valType="str"/>
         <Param name="stopVal" updates="constant" val="ready_to_shine == 0" valType="code"/>
         <Param name="durationEstim" updates="None" val="" valType="code"/>
