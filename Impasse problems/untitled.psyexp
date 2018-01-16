@@ -121,7 +121,7 @@
     </Routine>
     <Routine name="main_event">
       <CodeComponent name="code">
-        <Param name="Begin Experiment" updates="constant" val="delay_time = sample((0,10),2)&amp;#10;&amp;#10;ready_to_shine = 0&amp;#10;time_to_stop = 0&amp;#10;" valType="extendedCode"/>
+        <Param name="Begin Experiment" updates="constant" val="delay_time = sample((0,15),2)&amp;#10;&amp;#10;ready_to_shine = 0&amp;#10;time_to_stop = 0&amp;#10;" valType="extendedCode"/>
         <Param name="name" updates="None" val="code" valType="code"/>
         <Param name="Begin Routine" updates="constant" val="blink = 0&amp;#10;blink_time = delay #также и для дистракции оно же&amp;#10;distraction = u'Начинайте считать от %d' % randint(1,10)" valType="extendedCode"/>
         <Param name="End Routine" updates="constant" val="if 'e' == problem_control_exit.keys:&amp;#10;    circles.finished = True&amp;#10;    ready_to_shine = 0&amp;#10;    impacts.opacity = 0&amp;#10;    time_to_stop = 0&amp;#10;&amp;#10;&amp;#10;if 'space' == problem_control_impass.keys:&amp;#10;    ready_to_shine = 1&amp;#10;    time_to_stop = 10 + delay&amp;#10;&amp;#10;if 'e' == problem_control_exit.keys and 'space' == problem_control_impass.keys:&amp;#10;    print u'We have a problem Huston'" valType="extendedCode"/>

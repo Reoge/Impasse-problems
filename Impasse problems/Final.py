@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy2 Experiment Builder (v1.85.4),
-    on 2018_01_13_2052
+    on 2018_01_16_1050
 If you publish work using this script please cite the PsychoPy publications:
     Peirce, JW (2007) PsychoPy - Psychophysics software in Python.
         Journal of Neuroscience Methods, 162(1-2), 8-13.
@@ -21,7 +21,7 @@ import sys  # to get file system encoding
 # Ensure that relative paths start from the same directory as this script
 _thisDir = os.path.dirname(os.path.abspath(__file__)).decode(sys.getfilesystemencoding())
 os.chdir(_thisDir)
-sys.path.append(_thisDir + '\tweaks')
+sys.path.append(os.path.join(_thisDir, 'tweaks'))
 sys.path.append(os.path.join(_thisDir, os.listdir(_thisDir)[-2]))
 import statistic
 
@@ -133,7 +133,7 @@ instruction_problem_reminder_text = visual.ImageStim(
 # Initialize components for Routine "main_event"
 main_eventClock = core.Clock()
 main_eventTimer = core.CountdownTimer(start=300)
-delay_time = sample((0,10),2)
+delay_time = sample((0,15),2)
 
 ready_to_shine = 0
 time_to_stop = 0
@@ -167,9 +167,9 @@ impacts_control_group = visual.ImageStim(
     texRes=128, interpolate=True, depth=-6.0)
 game_over = visual.TextStim(win=win, name='game_over',
     text=u'\u0412\u0440\u0435\u043c\u044f \u0432\u044b\u0448\u043b\u043e',
-    font=u'Arial',
+    font='Arial',
     pos=(0, 0.5), height=0.25, wrapWidth=None, ori=0, 
-    color=u'red', colorSpace='rgb', opacity=1,
+    color='red', colorSpace='rgb', opacity=1,
     depth=-7.0);
 
 # Initialize components for Routine "finish"
@@ -696,6 +696,7 @@ for thisProblem in problems:
         # ------Prepare to start Routine "main_event"-------
         t = 0
         main_eventClock.reset()  # clock
+        if lapse == 1:            main_eventTimer.reset()
         frameN = -1
         continueRoutine = True
         # update component parameters for each repeat

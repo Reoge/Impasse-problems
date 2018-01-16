@@ -22,7 +22,7 @@ changes = {'                                STOPPED, FINISHED, PRESSED, RELEASED
                                          ],
                     'os.chdir(_thisDir)\n':
                                          [
-                                          "sys.path.append(_thisDir + '\\tweaks')",
+                                          "sys.path.append(os.path.join(_thisDir, 'tweaks'))",
                                           "sys.path.append(os.path.join(_thisDir, os.listdir(_thisDir)[-2]))",
                                           "import statistic",
                                           ],
@@ -64,6 +64,11 @@ changes = {'                                STOPPED, FINISHED, PRESSED, RELEASED
                    "main_eventClock = core.Clock()\n":
                                           [
                                           "main_eventTimer = core.CountdownTimer(start=300)",
+                                          ],
+                   "        main_eventClock.reset()  # clock\n":
+                                          [
+                                          "        if lapse == 1:"
+                                          "            main_eventTimer.reset()",
                                           ],
                    "            t = main_eventClock.getTime()\n":
                                           [
